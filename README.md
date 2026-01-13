@@ -23,22 +23,22 @@
 
 ```mermaid
 graph TD
-    User[用户提问] --> UI[Streamlit 前端]
-    UI --> Cache{Redis 缓存?}
+    User[用户提问] --> UI[Streamlit前端]
+    UI --> Cache{Redis缓存?}
     Cache -- 命中 --> Return[返回缓存答案]
     Cache -- 未命中 --> Router[检索路由]
     
-    subgraph "混合检索系统"
+    subgraph HybridSearch [混合检索系统]
         Router --> Vector[向量搜索 ChromaDB]
         Router --> Keyword[关键词搜索 BM25]
         Vector --> Fuse[结果融合]
         Keyword --> Fuse
     end
     
-    Fuse --> TopK[Top-K 排序 k=6]
-    TopK --> LLM[DeepSeek-V3 模型]
+    Fuse --> TopK[Top-K排序 k=6]
+    TopK --> LLM[DeepSeek-V3模型]
     LLM --> UI
-    LLM --> Update[更新 Redis 缓存]
+    LLM --> Update[更新Redis缓存]
     
 🧪 Evaluation Metrics (评估数据)
 Faithfulness,0.83, High reliability; resists hallucination.
