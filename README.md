@@ -39,7 +39,3 @@ graph TD
     TopK --> LLM[DeepSeek-V3模型]
     LLM --> UI
     LLM --> Update[更新Redis缓存]
-    
-Evaluation Metrics (评估数据)
-Faithfulness,0.83, High reliability; resists hallucination.
-Context Recall, High,Optimized by tuning Top-K from 3 to 6.
